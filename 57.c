@@ -38,6 +38,14 @@ void merge (LInt *r, LInt a, LInt b){
    	 	current = current -> prox;
    	 }
    }
+ }
+
+ current = *r;
+ (*r) = (*r) -> prox;
+ free(current);  
+}
+   	 }
+   }
 
 
 
