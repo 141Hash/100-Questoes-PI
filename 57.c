@@ -8,50 +8,34 @@ LInt newLInt (int v, LInt t){
     return new;
 }
 
-void merge (LInt *r, LInt a, LInt b){
-   *r = newLInt (141, NULL);
-   LInt current = *r;
-   
-   while (a != NULL || b != NULL){
-   
-   if(a == NULL){
-   	current -> prox = b;
-   	break;
-   }
-   
-   else if(b == NULL){
-   	current -> prox = a;
-   	break;
-   }
 
-   else{
-   	if (a -> valor < b -> valor){
-   		current-> prox = a;
-   		a = a-> prox;
-   		current = current-> prox;
+void merge (LInt *r, LInt a, LInt b) {
 
-   	 }
+	LInt atual = newLInt (0, NULL);
+	*r = atual;
 
-   	 else{
-   	 	current-> prox = b;
-   	 	b = b -> prox;
-   	 	current = current -> prox;
-   	 }
-   }
- }
+	while (a != NULL && b != NULL) {
 
- current = *r;
- (*r) = (*r) -> prox;
- free(current);  
-}
-   	 }
-   }
+		if (a->valor < b->valor) {
+			atual->prox = a;
+			a = a->prox;
+		}
+		else {
+			atual->prox = b;
+			b = b->prox;
+		}
 
+		atual = atual->prox;
+	}
 
+	if (a == NULL)
+		atual->prox = b;
+	else
+		atual->prox = a;
 
- }
+	atual = *r;
+	*r = atual->prox;
+	free (atual);
 
- current = *r;
- (*r) = (*r) -> prox;
- free(current);  
+	return;
 }
